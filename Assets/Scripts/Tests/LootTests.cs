@@ -37,4 +37,31 @@ public class LootTests
         Object.DestroyImmediate(lootDescription);
         Object.DestroyImmediate(testDrop);
     }
+
+    [Test]
+    public void TestDropHalfHalfDistribution()
+    {
+        var lootTable = ScriptableObject.CreateInstance<LootDescription>();
+        var dropOne = ScriptableObject.CreateInstance<Drop>();
+        var dropTwo = ScriptableObject.CreateInstance<Drop>();
+
+        var pairOne = new DropProbabilityPair();
+        pairOne.Drop = dropOne;
+        pairOne.Probability = .5f;
+
+        var pairTwo = new DropProbabilityPair();
+        pairTwo.Drop = dropTwo;
+        pairTwo.Probability = .5f;
+
+        DropProbabilityPair[] pair = { pairOne, pairTwo };
+
+        lootTable.SetDrops( pair );
+
+
+        for ( int i = 0; i < 100; i++ )
+        {
+            Drop drop = lootTable.SelectDropRandomly();
+            Assert.IsNotNull( drop );                    
+        }
+    }
 }
