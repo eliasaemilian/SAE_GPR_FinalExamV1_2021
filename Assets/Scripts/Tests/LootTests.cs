@@ -64,4 +64,53 @@ public class LootTests
             Assert.IsNotNull( drop );                    
         }
     }
+
+    [Test]
+    public void TestThatOrderIsIrrelevant()
+    {
+        var lootTable = ScriptableObject.CreateInstance<LootDescription>();
+        var lootTableSwitched = ScriptableObject.CreateInstance<LootDescription>();
+        var dropOne = ScriptableObject.CreateInstance<Drop>();
+        var dropTwo = ScriptableObject.CreateInstance<Drop>();
+        dropOne.DropName = "One";
+        dropTwo.DropName = "Two";
+
+        var pairOne = new DropProbabilityPair();
+        pairOne.Drop = dropOne;
+        pairOne.Probability = .1f;
+
+        var pairTwo = new DropProbabilityPair();
+        pairTwo.Drop = dropTwo;
+        pairTwo.Probability = .9f;
+
+        DropProbabilityPair[] pair = { pairOne, pairTwo };
+        DropProbabilityPair[] pairSwitched = { pairTwo, pairOne };
+
+        lootTable.SetDrops( pair );
+        lootTableSwitched.SetDrops( pairSwitched );
+        Drop[] resultOne = new Drop[1000];
+        Drop[] resultSwitched = new Drop[1000];
+
+        for ( int i = 0; i < 1000; i++ )
+        {
+            resultOne[i] = lootTable.SelectDropRandomly();
+            resultSwitched[i] = lootTableSwitched.SelectDropRandomly();
+        }
+
+        int rOneCount = 0, rSwitchedCount = 0;
+        foreach ( Drop drop in resultOne )
+        {
+            if ( drop.DropName == "One" ) rOneCount++;
+        }
+        foreach ( Drop drop in resultSwitched )
+        {
+            if ( drop.DropName == "One" ) rSwitchedCount++;
+        }
+
+        Assert.GreaterOrEqual( rOneCount, 80 );
+        Assert.GreaterOrEqual( rSwitchedCount, 80 );
+        Assert.LessOrEqual( rOneCount, 130 );
+        Assert.LessOrEqual( rSwitchedCount, 130 );
+    }
 }
+
