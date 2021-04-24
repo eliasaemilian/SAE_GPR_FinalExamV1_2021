@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1456a10c857f4c4881ea40f45a47743, type: 3}
+  m_Name: FireTrapSpecialAttack
+  m_EditorClassIdentifier: 
+  SpellName: Fire Trap
+  Description: A Rune is placed on the ground. If an enemy steps on it it deals massive
+    area damage.
+  SpellIcon: {fileID: 21300000, guid: a5d9d7fef5fd2194ea14ff1561195c64, type: 3}
+  Duration: 0.7
+  Cooldown: 1
+  AnimationVariableName: FireTrap
+  RunePrefab: {fileID: 100004, guid: b657e2bb1c8259d46b6605da8fce276a, type: 3}
+  RuneSpawnDelay: 0.3

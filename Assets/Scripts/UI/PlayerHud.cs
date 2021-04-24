@@ -35,7 +35,7 @@ public class PlayerHud : MonoBehaviour
 
         dropCollector.DropsInRangeChanged += OnDropsInRangeChanged;
         dropCollector.DropCollected += OnDropCollected;
-        dropCollector.DropAbilityCollected += OnDropAbilityCollected;
+        spellCastingController.DropAbilityUpdated += OnDropAbilityCollected;
 
         pickUpAnimation = pickupUIObject.GetComponent<Animation>();
         pickupUIObject.SetActive( false );
@@ -56,9 +56,7 @@ public class PlayerHud : MonoBehaviour
 
     private void OnDropAbilityCollected(DropAbility ability)
     {
-        // if none enable icon
         spellIconSpecial.sprite = spellCastingController.SpecialAttackSpellDescription.SpellIcon;
-        // change icon to new ability
     }
 
 
@@ -77,16 +75,19 @@ public class PlayerHud : MonoBehaviour
         }
 
 
-        cooldown = spellCastingController.GetSpecialAttackCooldown();
-        if ( cooldown > 0 )
+        if ( spellCastingController.HasSpecialAbility )
         {
-            spellCooldownTextSpecial.text = cooldown.ToString( "0.0" );
-            spellIconSpecial.color = new Color( 0.25f, 0.25f, 0.25f, 1 );
-        }
-        else
-        {
-            spellCooldownTextSpecial.text = "";
-            spellIconSpecial.color = Color.white;
+            cooldown = spellCastingController.GetSpecialAttackCooldown();
+            if ( cooldown > 0 )
+            {
+                spellCooldownTextSpecial.text = cooldown.ToString( "0.0" );
+                spellIconSpecial.color = new Color( 0.25f, 0.25f, 0.25f, 1 );
+            }
+            else
+            {
+                spellCooldownTextSpecial.text = "";
+                spellIconSpecial.color = Color.white;
+            }
         }
 
         if (playPickUpTextAnimation)

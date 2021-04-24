@@ -6,5 +6,5 @@ using UnityEngine;
 public class DropAbility : Drop
 {
     [Header( "Ability" )]
-    public ProjectileSpellDescription SpellDescription;
+    public SpellDescription SpellDescription;
 }

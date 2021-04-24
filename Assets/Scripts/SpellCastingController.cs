@@ -9,13 +9,15 @@ public interface IPlayerAction
 
 public class SpellCastingController : MonoBehaviour, IPlayerAction
 {
+    public event System.Action<DropAbility> DropAbilityUpdated;
+
     [SerializeField] private DropCollector dropCollector;
 
 
     [SerializeField] private Animator animator;
     [SerializeField] private Transform castLocationTransform;
     [SerializeField] private ProjectileSpellDescription simpleAttackSpell;
-    [SerializeField] private ProjectileSpellDescription specialAttackSpell;
+    [SerializeField] private SpellDescription specialAttackSpell;
 
     private bool _hasSpecialAbility;
     public bool HasSpecialAbility { get { return _hasSpecialAbility; } }
@@ -36,6 +38,7 @@ public class SpellCastingController : MonoBehaviour, IPlayerAction
         Debug.Assert( dropCollector != null, "DropCollector reference is null" );
 
         dropCollector.DropAbilityCollected += OnSpecialAbilityCollected;
+
     }
 
     void Update()
@@ -52,22 +55,36 @@ public class SpellCastingController : MonoBehaviour, IPlayerAction
             else if (HasSpecialAbility && specialAttack && GetSpecialAttackCooldown() == 0 )
             {
                 Debug.Log("Trigger special attack");
-                StartCoroutine( SpecialAttackRoutine() );
-
+               if (specialAttackSpell is ProjectileSpellDescription)  StartCoroutine( SpecialAttackRoutineProjectile() );
+               else if (specialAttackSpell is RuneSpellDescription) StartCoroutine( SpecialAttackRoutineRune() );
             }
         }
     }
 
-    private IEnumerator SpecialAttackRoutine()
+    private IEnumerator SpecialAttackRoutineProjectile()
     {
+        ProjectileSpellDescription spell = specialAttackSpell as ProjectileSpellDescription;
         inAction = true;
         animator.SetTrigger( specialAttackSpell.AnimationVariableName);
 
-        yield return new WaitForSeconds( specialAttackSpell.ProjectileSpawnDelay);
+        yield return new WaitForSeconds( spell.ProjectileSpawnDelay);
 
-        Instantiate( specialAttackSpell.ProjectilePrefab, castLocationTransform.position, castLocationTransform.rotation);
+        Instantiate( spell.ProjectilePrefab, castLocationTransform.position, castLocationTransform.rotation);
 
-        yield return new WaitForSeconds( specialAttackSpell.Duration - specialAttackSpell.ProjectileSpawnDelay);
+        yield return new WaitForSeconds( specialAttackSpell.Duration - spell.ProjectileSpawnDelay);
+        lastSpecialAttackTimestamp = Time.time;
+        inAction = false;
+    }
+
+    private IEnumerator SpecialAttackRoutineRune()
+    {
+        RuneSpellDescription spell = specialAttackSpell as RuneSpellDescription;
+        inAction = true;
+        animator.SetTrigger( specialAttackSpell.AnimationVariableName );
+
+        Instantiate( spell.RunePrefab, castLocationTransform.position, castLocationTransform.rotation );
+
+        yield return new WaitForSeconds( specialAttackSpell.Duration - spell.RuneSpawnDelay );
         lastSpecialAttackTimestamp = Time.time;
         inAction = false;
     }
@@ -107,7 +124,7 @@ public class SpellCastingController : MonoBehaviour, IPlayerAction
         _hasSpecialAbility = true;
         collectedAbilities.Add( ability );
         specialAttackSpell = ability.SpellDescription;
-        
+        DropAbilityUpdated?.Invoke(ability);
         Debug.Log( "Set new Special Ability" );
     }
 

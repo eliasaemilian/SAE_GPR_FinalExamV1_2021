@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97cdc73b4e692843a2aea9786d147a3, type: 3}
   m_Name: Drop03_SpecialAbility
   m_EditorClassIdentifier: 
-  DropName: Special Ability
+  DropName: Fire Trap Ability
   Description: 
   Rarity: 0
   OnPickUpPhrase: Aquired a new special Ability
+  SpellDescription: {fileID: 11400000, guid: fdae951968a3690458af55414ccaaba8, type: 2}
