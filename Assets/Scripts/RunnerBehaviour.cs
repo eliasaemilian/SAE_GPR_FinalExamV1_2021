@@ -22,6 +22,7 @@ public class RunnerBehaviour : MonoBehaviour, IEnemy
     [SerializeField] private LootDescription lootDescription;
 
     [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private Collider myCollider;
 
     [FormerlySerializedAs("heathComponent")] 
     [SerializeField] private HealthComponent healthComponent;
@@ -67,14 +68,17 @@ public class RunnerBehaviour : MonoBehaviour, IEnemy
         animator.SetTrigger(DEAD_ANIMATOR_ID);
         navMeshAgent.isStopped = true;
         navMeshAgent.enabled = false;
+        myCollider.enabled = false;
+
+        if ( lootDescription != null )
+        {
+            var drop = lootDescription.SelectDropRandomly();
+            dropSpawner.SpawnDropAt( drop, transform.position );
+        }
+
 
         yield return new WaitForSeconds(3f);
 
-        if (lootDescription != null)
-        {
-            var drop = lootDescription.SelectDropRandomly();
-            dropSpawner.SpawnDropAt(drop, transform.position);
-        }
 
         Destroy(gameObject);
     }

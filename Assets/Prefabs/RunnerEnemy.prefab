@@ -1437,7 +1437,8 @@ MonoBehaviour:
   animator: {fileID: 642376241210884940}
   lootDescription: {fileID: 11400000, guid: 35277d1dd17260343bde1dcecb9b9296, type: 2}
   navMeshAgent: {fileID: 642376241880889023}
-  heathComponent: {fileID: 1600695042952418558}
+  myCollider: {fileID: 1617938265}
+  healthComponent: {fileID: 1600695042952418558}
   targetingManager: {fileID: 0}
   dropSpawner: {fileID: 0}
 --- !u!114 &1600695042952418558
