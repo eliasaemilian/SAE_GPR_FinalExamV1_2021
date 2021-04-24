@@ -63,6 +63,9 @@ MonoBehaviour:
   velocity: 10
   damage: 50
   selfdestructTime: 10
+  damageEffectPrefab: {fileID: 100002, guid: 75369bb81385f4904842bf20a51c14a2, type: 3}
+  damageEffectDelayTime: 1.1
+  projectileEffect: {fileID: 428208471364205393}
 --- !u!54 &428208472238148138
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -188,6 +191,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391ec6f1311384e75b4888fd6fc26b7e, type: 3}
+--- !u!1 &428208471364205393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 391ec6f1311384e75b4888fd6fc26b7e, type: 3}
+  m_PrefabInstance: {fileID: 428208471364107763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &428208471364495217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 391ec6f1311384e75b4888fd6fc26b7e, type: 3}
