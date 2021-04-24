@@ -15,4 +15,4 @@ MonoBehaviour:
   DropName: Gold
   Description: 
   Rarity: 0
-  Icon: {fileID: 21300000, guid: 7ce3f6d34b375ce4d8ab3069c5cfbecd, type: 3}
+  OnPickUpPhrase: +1 Gold

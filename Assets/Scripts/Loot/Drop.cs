@@ -15,6 +15,10 @@ public class Drop : ScriptableObject
     public string Description;
 
     public DropRarity Rarity;
+
+    [Header("On PickUp Description")]
+    [TextArea( 1, 2 )]
+    public string OnPickUpPhrase;
 }
 
 public enum DropRarity
