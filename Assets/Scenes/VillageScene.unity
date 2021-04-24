@@ -11875,13 +11875,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 482094393}
     - target: {fileID: 747525276, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
+      propertyPath: spellIconSpecial
+      value: 
+      objectReference: {fileID: 1881917669}
+    - target: {fileID: 747525276, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
       propertyPath: spellCastingController
       value: 
       objectReference: {fileID: 562764425}
-    - target: {fileID: 1826546617449191936, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
-      propertyPath: m_Animation
+    - target: {fileID: 747525276, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
+      propertyPath: spellCooldownTextSpecial
       value: 
-      objectReference: {fileID: 7400000, guid: ccb25654ed71f9c459818b9dec19e4f6, type: 2}
+      objectReference: {fileID: 566389331}
     - target: {fileID: 9194845279064379432, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
       propertyPath: m_Name
       value: Canvas_PlayerHUD
@@ -16119,6 +16123,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7545065591762958709, guid: 91b6b57c44ad937458ed73bc6b1700c8, type: 3}
+      propertyPath: specialAttackSpell
+      value: 
+      objectReference: {fileID: 11400000, guid: fdae951968a3690458af55414ccaaba8, type: 2}
     - target: {fileID: 7958410239221670385, guid: 91b6b57c44ad937458ed73bc6b1700c8, type: 3}
       propertyPath: m_Name
       value: Eve_Player
@@ -16145,6 +16153,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab6a32527068fca4b94e8663b0ba13e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &566389331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4529571254089511403, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
+  m_PrefabInstance: {fileID: 416148169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &577056401
@@ -48133,6 +48152,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7675646753312853964, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
+      propertyPath: dropsPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675646753312853964, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
+      propertyPath: dropsPrefabs.Array.data[2].Drop
+      value: 
+      objectReference: {fileID: 11400000, guid: d204397ce9e551e48a29c018ba55de24, type: 2}
+    - target: {fileID: 7675646753312853964, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
+      propertyPath: dropsPrefabs.Array.data[2].Prefab
+      value: 
+      objectReference: {fileID: 8633618642237536578, guid: 4fc4278326325074baa7501f18b0f4c9, type: 3}
     - target: {fileID: 9197474405759586917, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -51007,6 +51038,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c92a12fb577ec0a48abf55cfc24bcecd, type: 3}
+--- !u!114 &1881917669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 381271221504240072, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
+  m_PrefabInstance: {fileID: 416148169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1898294285
 PrefabInstance:
   m_ObjectHideFlags: 0

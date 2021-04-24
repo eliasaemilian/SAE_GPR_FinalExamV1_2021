@@ -9,6 +9,9 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private Image spellIcon;
     [SerializeField] private TMPro.TMP_Text spellCooldownText;
+    [SerializeField] private Image spellIconSpecial;
+    [SerializeField] private TMPro.TMP_Text spellCooldownTextSpecial;
+
     [SerializeField] private GameObject collectUIObject;
     [SerializeField] private GameObject pickupUIObject;
     [SerializeField] private TMPro.TMP_Text pickUpText;
@@ -24,9 +27,15 @@ public class PlayerHud : MonoBehaviour
         Debug.Assert(dropCollector != null, "DropCollector reference is null");
 
         spellIcon.sprite = spellCastingController.SimpleAttackSpellDescription.SpellIcon;
+        if (spellCastingController.HasSpecialAbility ) spellIconSpecial.sprite = spellCastingController.SpecialAttackSpellDescription.SpellIcon;
+        else
+        {
+            spellIconSpecial.sprite = null;
+        }
 
         dropCollector.DropsInRangeChanged += OnDropsInRangeChanged;
         dropCollector.DropCollected += OnDropCollected;
+        dropCollector.DropAbilityCollected += OnDropAbilityCollected;
 
         pickUpAnimation = pickupUIObject.GetComponent<Animation>();
         pickupUIObject.SetActive( false );
@@ -45,6 +54,13 @@ public class PlayerHud : MonoBehaviour
         playPickUpTextAnimation = true;
     }
 
+    private void OnDropAbilityCollected(DropAbility ability)
+    {
+        // if none enable icon
+        spellIconSpecial.sprite = spellCastingController.SpecialAttackSpellDescription.SpellIcon;
+        // change icon to new ability
+    }
+
 
     private void Update()
     {
@@ -58,6 +74,19 @@ public class PlayerHud : MonoBehaviour
         {
             spellCooldownText.text = "";
             spellIcon.color = Color.white;
+        }
+
+
+        cooldown = spellCastingController.GetSpecialAttackCooldown();
+        if ( cooldown > 0 )
+        {
+            spellCooldownTextSpecial.text = cooldown.ToString( "0.0" );
+            spellIconSpecial.color = new Color( 0.25f, 0.25f, 0.25f, 1 );
+        }
+        else
+        {
+            spellCooldownTextSpecial.text = "";
+            spellIconSpecial.color = Color.white;
         }
 
         if (playPickUpTextAnimation)
@@ -75,4 +104,5 @@ public class PlayerHud : MonoBehaviour
             pickupUIObject.SetActive( false );
         }
     }
+
 }

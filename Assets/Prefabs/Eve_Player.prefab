@@ -2113,9 +2113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4081757da93864fa146ff497a9c58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCollector: {fileID: 6684469488064594396}
   animator: {fileID: 7111353289441474563}
   castLocationTransform: {fileID: 1025611270}
   simpleAttackSpell: {fileID: 11400000, guid: fdae951968a3690458af55414ccaaba8, type: 2}
+  specialAttackSpell: {fileID: 11400000, guid: fdae951968a3690458af55414ccaaba8, type: 2}
 --- !u!114 &919132148507359903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,6 +2148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6a32527068fca4b94e8663b0ba13e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellCastingController: {fileID: 7545065591762958709}
 --- !u!114 &1790766280412284787
 MonoBehaviour:
   m_ObjectHideFlags: 0

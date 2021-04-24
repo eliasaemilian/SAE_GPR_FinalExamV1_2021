@@ -8,8 +8,17 @@ public class DropCollector : MonoBehaviour
 
     public event System.Action DropsInRangeChanged;
     public event System.Action<Drop> DropCollected;
+    public event System.Action<DropAbility> DropAbilityCollected;
 
     public int DropsInRangeCount { get => dropsInRange.Count; }
+
+    [SerializeField] private SpellCastingController spellCastingController;
+
+    private void Start()
+    {
+        Debug.Assert( spellCastingController != null, "SpellCastingController reference is null" );
+
+    }
 
     private void Update()
     {
@@ -33,6 +42,13 @@ public class DropCollector : MonoBehaviour
         Destroy(drop.gameObject);
         DropsInRangeChanged?.Invoke();
         DropCollected?.Invoke(drop.GetDrop());
+
+        DropAbility ability = drop.GetDrop() as DropAbility;
+        if ( ability != null && !spellCastingController.HasAbilityCollected(ability))
+        {
+            Debug.Log( "Picked up new Ability" );
+            DropAbilityCollected?.Invoke( ability );
+        }
     }
 
     private RuntimeDropInstance GetClosestDrop()
